@@ -19,7 +19,7 @@ class Board < ActiveRecord::Base
   def categorise_tasks_by(property)
     # Hacky fix for hash of arrays
     categorised_tasks = Hash.new { |h, k| h[k] = [] }
-    tasks.oldest_first.includes(:user).each do |task|
+    tasks.oldest_first.each do |task|
       categorised_tasks[task.send(property)] << task
     end
     categorised_tasks
