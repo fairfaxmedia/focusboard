@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+admin_task_note:
+  content: hello world
+  task: one
+
+enabled_user_task_note:
+  content: goodbye world
+  task: two
+
+disabled_user_task_note:
+  content: hello!!!
+  task: three

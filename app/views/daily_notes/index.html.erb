@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Daily Reflections
+      </div>
+      <div class="panel-body">
+        <%= render 'shared/daily_notes_table', daily_notes: @daily_notes %>
+        <%= paginate @daily_notes, theme: 'twitter-bootstrap-3' %>
+      </div>
+      <% unless current_user.reviewed_today? %>
+        <div class="panel-footer">
+          <div class="center">
+            <%= link_to(
+              'Add Note',
+              new_user_daily_note_path(current_user),
+              class: "btn btn-default"
+            ) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

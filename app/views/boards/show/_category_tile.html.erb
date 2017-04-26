@@ -1,0 +1,22 @@
+<div class="col-md-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= content_tag(
+        :span,
+        category,
+        title: description,
+        data: { toggle: :tooltip, placement: :right },
+        class: "label label-#{category_label(category)}"
+      ) %>
+    </div>
+    <div class="panel-body board_block">
+      <table class="table table-hover">
+        <tbody>
+            <% tasks[category.downcase].each do |task| %>
+              <%= render 'boards/show/category_task_row', task: task %>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

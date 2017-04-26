@@ -1,0 +1,23 @@
+development:
+  encoding: utf8
+  reconnect: false
+  url: <%= ENV['DATABASE_URL'] || ENV['DEVELOPMENT_DATABASE_URL'] %>
+  pool: 5
+  write_timeout: 2
+  read_timeout: 2
+
+test:
+  encoding: utf8
+  reconnect: false
+  url: <%= ENV['DATABASE_URL'] || ENV['TEST_DATABASE_URL'] %>
+  pool: 5
+  write_timeout: 10
+  read_timeout: 10
+
+production: &production
+  adapter: mysql2
+  encoding: utf8
+  url: <%= ENV['DATABASE_URL'] %>
+
+stage:
+  <<: *production

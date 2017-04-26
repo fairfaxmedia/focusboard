@@ -1,0 +1,18 @@
+<%= form_for([task, TaskNote.new]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <div class="col-md-11">
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+    <div class="actions col-md-1">
+    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+      <span class="glyphicon glyphicon-plus"></span>
+    <% end %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :task_id, value: task.id %>
+
+
+<% end %>

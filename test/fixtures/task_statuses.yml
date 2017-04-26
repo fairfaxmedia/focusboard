@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: active
+  task: one
+
+two:
+  status: active
+  task: two
+  
+three:
+  status: active
+  task: three

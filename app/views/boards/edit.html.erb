@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Board Settings
+      </div>
+      <div class="panel-body">
+        <%= render 'boards/shared/form', board: @board %>
+        <hr>
+        <%= render 'boards/edit/board_users_list', board: @board %>
+        <%= render 'boards/edit/add_user_form', board: @board, board_membership: @board_membership %>
+        <hr>
+        <%= render 'boards/edit/board_goals_list', board: @board %>
+        <%= render 'boards/edit/add_goals_form', board: @board %>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Boards', boards_path, class: "btn btn-default" %>
+        <%= link_to 'Show Board', @board, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="progress" style="margin-bottom: 0; width:90%">
+  <div class="progress-bar" aria-valuenow="<%= (user.ticket_tally.to_f/5*100).to_i %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= (user.ticket_tally.to_f/5*100).to_i %>%">
+    <%= pluralize(user.ticket_tally, 'ticket') if user.ticket_tally > 0 %>
+  </div>
+
+  <%= render 'boards/show/ticket_progress_button' if user == current_user %>
+</div>

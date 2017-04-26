@@ -1,0 +1,47 @@
+<div class="modal fade" id="boardGoalsModal" tabindex="-1" role="dialog" aria-labelledby="boardGoalsModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title center" id="boardGoalsModalLabel">
+          Board Details
+        </h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Owner:</th>
+              <td><%= "#{board.owner.name} (#{board.owner.email})"%></td>
+            </tr>
+            <tr>
+              <th>Goals:</th>
+              <td>
+                <ul>
+                  <% board.goals.each do |board_goal| %>
+                  <li><%= board_goal.name %></li>
+                  <% end %>
+                </ul>
+              </tr>
+              <tr>
+                <th>Members:</th>
+                <td>
+                  <ul>
+                  <% board.users.each do |user| %>
+                    <li><%= "#{user.name} (#{user.email})" %></li>
+                  <% end %>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Actions:</th>
+                <td>
+                  <%= leave_board_button(board) %>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

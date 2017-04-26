@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Edit Task
+      </div>
+      <div class="panel-body">
+        <%= render 'form', task: @task, board: @board, users: @users, readonly: false %>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Back', @task, class: "btn btn-default" %>
+        <% if policy(@task).edit? %>
+          <%= link_to(
+            'Delete',
+            @task,
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: "btn btn-default"
+          ) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

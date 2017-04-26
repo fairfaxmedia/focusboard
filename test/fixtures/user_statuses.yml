@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: WFH
+  user: enableduser
+  created_at: <%= Time.zone.now %>
+
+two:
+  status: Leave
+  user: otheruser
+  created_at: <%= Time.zone.now %>

@@ -1,0 +1,23 @@
+<%= form_for([board, BoardGoal.new]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.label :name, 'Add Goal' %><br>
+    </div>
+    <div class="col-md-2 col-md-offset-6">
+      <%= f.label :priority, 'Priority' %><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.text_field :name, maxlength: 50, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+      <%= f.number_field :priority, value: 1, in: 1..board.goals.length+1, class: 'form-control' %>
+    </div>
+    <div class="actions col-md-2">
+      <%= f.submit '+', class: 'btn btn-primary glyphicon glyphicon-plus' %>
+    </div>
+  </div>
+<% end %>

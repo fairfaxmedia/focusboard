@@ -1,0 +1,11 @@
+<div class="btn-group float-right">
+  <% Task::STATUSES.each do |status| %>
+    <%= link_to(
+      status.capitalize,
+      task_path(task, 'task[status]' => status),
+      method: :put,
+      class: "btn btn-#{category_label(status.upcase)}",
+      data: { confirm: "Set status to #{status}?" }
+    ) unless task.status == status %>
+  <% end %>
+</div>

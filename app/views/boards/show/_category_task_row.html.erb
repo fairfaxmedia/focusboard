@@ -1,0 +1,16 @@
+<tr>
+  <td>
+    <%= link_to(
+      "#{task.title}",
+      task,
+      title: task.description,
+      data: { toggle: :tooltip, placement: :right }
+    ) %>
+  </td>
+  <td>
+    <%= task.user.name %>
+  </td>
+  <td>
+    <%= pluralize(task.time_in_current_status, 'day') %>
+  </td>
+</tr>

@@ -1,0 +1,27 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td><strong>Users:</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% board.users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.name %>
+      </td>
+      <td>
+        <% unless board.owned_by?(user) %>
+          <%= link_to(
+            board_membership_path(board.membership_for(user)),
+            method: :delete,
+            data: { confirm: 'Are you sure?' }
+          ) do %>
+            <span class="glyphicon glyphicon-remove float-right"></span>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

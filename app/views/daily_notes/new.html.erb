@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Daily Reflection
+      </div>
+      <div class="panel-body">
+        <%= render 'form', user: @user, daily_note: @daily_note, readonly: false %>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Back', root_path, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+</div>

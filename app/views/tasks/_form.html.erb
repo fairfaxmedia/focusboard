@@ -1,0 +1,150 @@
+<%= form_for([board, task]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :board_id %><br>
+      <%= f.collection_select(
+        :board_id,
+        current_user.boards,
+        :id,
+        :name,
+        {},
+        class: 'form-control',
+        disabled: true,
+        selected: task.board_id
+      ) %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.label :board_goal_id, 'Team Strategic Goal' %>
+      <%= f.collection_select(
+        :board_goal_id,
+        task.board.goals,
+        :id,
+        :name,
+        { include_blank: true },
+        class: 'form-control',
+        disabled: readonly
+      ) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :title %><br>
+      <%= f.text_field(
+        :title,
+        maxlength: 100,
+        class: 'form-control',
+        readonly: readonly
+      ) %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.label :user_id %><br>
+      <%= f.collection_select(
+        :user_id, users || [current_user],
+        :id,
+        :name_and_email,
+        {},
+        class: 'form-control',
+        disabled: readonly,
+        selected: task.user_id
+      ) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+      <%= f.label :description %><br>
+      <%= f.text_area(
+        :description,
+        class: 'form-control',
+        readonly: readonly
+      ) %>
+    </div>
+
+    <div class="col-md-3">
+      <% if task.board.jira_url.present? %>
+        <%= f.label :jira %><br>
+        <% if task.jira? || !readonly %>
+          <%= f.text_field :jira, class: 'form-control', readonly: readonly %>
+        <% elsif task.jira? %>
+          <%= link_to(
+            task.jira,
+            "https://#{task.board.jira_url}/browse/#{task.jira}"
+          ) %>
+          <br/>
+          <br/>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+        <%= f.label :status %><br>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.select(
+              :status,
+              Task::STATUS_COLLECTION,
+              {},
+              class: 'form-control',
+              disabled: readonly
+            ) %>
+          </div>
+          <% if !task.new_record? && policy(task).edit? %>
+            <div class="col-md-8">
+              <%= render 'status_update_buttons', task: task %>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% if !task.new_record? %>
+    <div class="row">
+      <div class="col-md-9">
+        <% if task.completed? %>
+          <p>
+            <strong>Completed at:</strong>
+            <% if readonly %>
+              <%= local_time(task.completed_at) %>
+            <% else %>
+              <%= f.datetime_select(:completed_at) %>
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <strong>Created on:</strong>
+            <%= local_time(task.created_at, '%a %e %b, %Y at %l:%M%P') %>
+            <%= "(#{pluralize(days_since(task.created_at.to_date), 'day')} ago)" %>
+          </p>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <%= content_tag(
+          :button,
+          'Status History',
+          class: 'btn btn-info float-right',
+          type: :button,
+          data: { toggle: :modal, target: '#statusHistoryModal' }
+        ) %>
+        <%= render 'status_history_modal', task: task %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :board_id, value: task.board_id %>
+
+  <div class="actions row">
+    <% if !readonly %>
+      <div class='col-md-12'>
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>

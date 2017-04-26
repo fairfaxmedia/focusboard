@@ -1,0 +1,50 @@
+<%= render 'boards/show/review_prompt' %>
+
+<div class="board panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="center">
+      <%= content_tag(
+        :button,
+        @board.name,
+        class: 'unstyled-button',
+        data: { toggle: :modal, target: '#boardGoalsModal' }
+      ) %>
+      <%= standup_button(@board) %>
+      <%= board_owner_buttons(@board) %>
+    </h4>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+        <ul class="list-inline center">
+          <% @board.goals.each do |goal| %>
+            <li>
+              <%= board_goal_label(goal, class: 'goal_label') %>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div class="row">
+      <% @users.each do |user| %>
+        <%= render('boards/show/user_tile', user: user, board: @board) %>
+      <% end %>
+    </div>
+    <hr>
+    <div class="row">
+      <% categories.each do |category_name, description| %>
+        <%= render(
+          'boards/show/category_tile',
+          category: category_name,
+          description: description,
+          board: @board,
+          tasks: @tasks
+        ) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'boards/show/board_details_modal', board: @board %>

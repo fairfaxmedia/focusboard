@@ -1,0 +1,11 @@
+<% if afternoon? && !current_user.reviewed_today? %>
+  <div class="row center">
+    <em>
+      You have not submitted your daily review.
+      <%= link_to(
+        'Please submit it before you leave.',
+        new_user_daily_note_path(current_user)
+      ) %>
+    </em>
+  </div>
+<% end %>

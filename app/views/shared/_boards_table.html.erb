@@ -1,0 +1,37 @@
+<table class="table table-inverse table-condensed table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% boards.each do |board| %>
+      <tr>
+        <td><%= board.name %></td>
+        <td><%= board.owner.name %></td>
+        <td>
+          <div class='btn-group btn-group-xs'>
+            <%= link_to 'Show', board, class: 'btn btn-default' %>
+            <% if current_user.admin? || board.is_owner?(current_user) %>
+              <%= link_to(
+                'Edit',
+                edit_board_path(board),
+                class: 'btn btn-default'
+              ) %>
+              <%= link_to(
+                'Delete',
+                board,
+                method: :delete,
+                class: 'btn btn-danger',
+                data: { confirm: 'Are you sure?' }
+              ) %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

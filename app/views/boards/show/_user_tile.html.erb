@@ -1,0 +1,16 @@
+<div class='col-md-4'>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= render 'boards/show/user_tile_header', user: user, board: board %>
+    </div>
+    <div class="panel-body board_block">
+      <table class="table table-hover">
+        <tbody>
+          <% user.tasks_active_today(board).each do |task| %>
+            <%= render 'boards/show/user_task_row', task: task %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

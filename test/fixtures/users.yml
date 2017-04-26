@@ -1,0 +1,52 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+adminuser:
+    name: admin
+    email: admin@example.com
+    encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+    admin: true
+    enabled: true
+    confirmed_at: <%= Time.zone.now %>
+
+enableduser:
+    name: enableduser
+    email: enableduser@example.com
+    encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+    admin: false
+    enabled: true
+    confirmed_at: <%= Time.zone.now %>
+
+disableduser:
+    name: disableduser
+    email: disableduser@example.com
+    encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+    admin: false
+    enabled: false
+    confirmed_at: <%= Time.zone.now %>
+
+unconfirmeduser:
+    name: unconfirmeduser
+    email: unconfirmeduser@example.com
+    encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+    admin: false
+    enabled: true
+
+userwithnoboards:
+    name: userwithnoboards
+    email: userwithnoboards@example.com
+    encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+    admin: false
+    enabled: true
+    confirmed_at: <%= Time.zone.now %>
+
+otheruser:
+    name: otheruser
+    email: otheruser@example.com
+    encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+    admin: false
+    enabled: true
+    confirmed_at: <%= Time.zone.now %>

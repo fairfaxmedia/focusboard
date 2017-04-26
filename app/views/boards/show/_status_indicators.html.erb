@@ -1,0 +1,24 @@
+<%= status_indicator(
+  status: 'WFH',
+  check_method: 'working_from_home_today?',
+  glyphicon: 'home',
+  user: user
+) %>
+<%= status_indicator(
+  status: 'Sick',
+  check_method: 'sick?',
+  glyphicon: 'bed',
+  user: user
+) %>
+<%= status_indicator(
+  status: 'Oncall',
+  check_method: 'oncall_this_week?',
+  glyphicon: 'earphone',
+  user: user
+) %>
+<%= status_indicator(
+  status: 'Leave',
+  check_method: 'on_leave?',
+  glyphicon: 'globe',
+  user: user
+) %>

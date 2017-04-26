@@ -1,0 +1,47 @@
+<div class="table-responsive">
+  <table class="table table-inverse table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>Outcome</th>
+        <th>Reflection</th>
+        <th>User</th>
+        <th>Date</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% daily_notes.each do |daily_note| %>
+        <tr>
+          <td>
+            <% unless daily_note.positive_outcome.nil? %>
+              <%= content_tag :span, nil,
+                              class: thumbs_class(daily_note) %></td>
+            <% end %>
+          <td><%= daily_note.content.truncate(10) %></td>
+          <td><%= daily_note.user.email %></td>
+          <td><%= local_time(daily_note.created_at, '%B %e, %Y')%></td>
+          <td>
+            <div class="btn-group btn-group-xs">
+              <%= link_to 'Show', daily_note, class: 'btn btn-default' %>
+              <% if daily_note.user == current_user %>
+                <%= link_to(
+                  'Edit',
+                  edit_daily_note_path(daily_note),
+                  class: 'btn btn-default'
+                ) %>
+                <%= link_to(
+                  'Delete',
+                  daily_note,
+                  method: :delete,
+                  class: 'btn btn-danger',
+                  data: { confirm: 'Are you sure?' }
+                ) %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

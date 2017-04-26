@@ -1,0 +1,23 @@
+<strong>
+  <%= link_to(
+    user.name,
+    user,
+    title: user.email,
+    data: { toggle: :tooltip, placement: :right }
+  )%>
+<%= " - #{fraction_to_percentage(user.daily_completion_percentage(board))} (#{user.daily_completion_fraction(board)})" %></strong>
+
+<% if user == current_user %>
+  <%= render 'boards/show/status_buttons' %>
+  <%= glyph_link_to(
+    new_board_task_path(board),
+      title: 'Add a task',
+      glyphicon: :plus,
+      style: 'float: right;',
+      span_data: { toggle: :tooltip, placement: :left }
+  ) %>
+<% else %>
+  <%= render 'boards/show/status_indicators', user: user %>
+<% end %>
+
+<%= render 'boards/show/ticket_progress_bar', user: user %>

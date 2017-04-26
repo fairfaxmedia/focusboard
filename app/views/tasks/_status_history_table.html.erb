@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <th colspan="1">Status</th>
+    <th>From</th>
+    <th>Until</th>
+    <th>Duration</th>
+  </thead>
+  <tbody>
+  <% task.task_statuses.each do |task_status| %>
+    <tr>
+      <td><%= task_status.status.capitalize %></td>
+      <td><%= local_time(task_status.created_at, '%a %e %b, %Y at %l:%M%P') %></td>
+      <td><%= task_status.finished_at ? local_time(task_status.finished_at, '%a %e %b, %Y at %l:%M%P') : 'Now' %></td>
+      <td><%= pluralize(task_status.created_at.to_date.business_days_until((task_status.finished_at || Time.zone.now).to_date), "day") %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

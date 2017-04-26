@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="table table-inverse table-condensed table-hover">
+    <tbody>
+      <tr>
+        <td>Email:</td>
+        <td><%= user.email %></td>
+      </tr>
+      <tr>
+        <td>Member since:</td>
+        <td><%= local_time(user.created_at) %></td>
+      </tr>
+      <tr>
+        <td>Last sign in:</td>
+        <td>
+          <%= user.last_sign_in_at ? local_time(user.last_sign_in_at) : "N/A" %>
+        </td>
+      </tr>
+      <tr>
+        <td># sign ins:</td>
+        <td><%= user.sign_in_count %></td>
+      </tr>
+      <tr>
+        <td>Currently incomplete tasks:</td>
+        <td><%= user.tasks.incomplete.length %></td>
+      </tr>
+      <tr>
+        <td>Tasks completed (this week)</td>
+        <td><%= user.weekly_completion_fraction %></td>
+      </tr>
+      <tr>
+        <td>Tasks completed (all-time)</td>
+        <td><%= user.total_completion_fraction %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

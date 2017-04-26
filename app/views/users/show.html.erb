@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        User Stats - <%= @user.name %>
+      </div>
+      <div class="panel-body">
+        <%= render 'stats_table', user: @user %>
+      </div>
+    </div>
+  </div>
+</div>

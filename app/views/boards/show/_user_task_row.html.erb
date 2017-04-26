@@ -1,0 +1,31 @@
+<tr>
+  <td>
+    <%= link_to "#{task.title}", task, title: task.tooltip,
+                data: { toggle: :tooltip, placement: :right } %>
+  </td>
+  <td>
+    <%= pluralize(task.time_in_current_status, 'day') %>
+  </td>
+  <td>
+  <% if task.status == 'completed' %>
+    <span class="green float-right glyphicon glyphicon-check"></span>
+  <% else %>
+    <% if policy(task).edit? %>
+      <span class="float-right">
+        <%= button_to(
+          task_path(task, 'task[status]' => 'completed'),
+          method: :patch,
+          title: 'Mark as complete',
+          data: { confirm: 'Are you sure?', toggle: :tooltip, placement: :left },
+          class: "no-text-decoration unstyled-button",
+          style: 'padding: 0px !important; margin: none !important;'
+        ) do %>
+            <%= content_tag :span, nil, class: 'glyphicon glyphicon-unchecked' %>
+        <% end %>
+      </span>
+    <% else %>
+      <span class="float-right glyphicon glyphicon-unchecked"></span>
+    <% end %>
+  <% end %>
+  </td>
+</tr>

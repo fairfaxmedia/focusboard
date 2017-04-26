@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+enabled_user_daily_note:
+  content: today i got a lot done...
+  user: enableduser
+  created_at: <%= 1.day.ago %> 
+
+admin_daily_note:
+  content: today i got nothing done because...
+  user: adminuser
+  created_at: <%= 1.day.ago %> 
+
+disabled_user_daily_note:
+  content: blah blah blah...
+  user: disableduser
+  created_at: <%= 1.day.ago %> 

@@ -1,0 +1,44 @@
+$(document).ready(function(){
+  // Browser notifications, poll every 60secs
+  // notify_at(9, 15, "Please remember to set your tasks for the day.", 1000*60);
+  // notify_at(9, 30, "Reminder: Team Standup.", 1000*60);
+  // notify_at(11, 50, "Please remember to update your task progress.", 1000*60);
+  // notify_at(16, 00, "Please remember to update your tasks before leaving.", 1000*60);
+  // notify_at(new Date().getHours(), new Date().getMinutes(), "Please remember to update your tasks before leaving.", 1000*5)
+});
+
+function notify_at(hour, minute, message, polling_rate) {
+  setInterval(function() {
+    var date = new Date();
+    if (date.getHours() === hour && date.getMinutes() === minute) {
+      notify(message);
+    }
+  }, polling_rate);
+}
+
+function notify(message) {
+  if (!("Notification" in window)) {
+    alert("This browser does not support system notifications.");
+  }
+  else if (Notification.permission === "granted") {
+    create_notification("FocusBoard", message)
+  }
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+        create_notification("FocusBoard", message)
+      }
+    });
+  }
+  else {
+    alert(message);
+  }
+}
+
+function create_notification(title, message) {
+  var options = {
+    body: message,
+    icon: "<%= asset_path('crosshair.png') %>"
+  }
+  var notification = new Notification(title, options);
+}

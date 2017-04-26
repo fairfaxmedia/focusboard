@@ -1,0 +1,63 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>
+        <strong>Goals:</strong>
+      </th>
+      <th>
+        <strong>Priority</strong>
+      </th>
+       <th>
+        <strong>Colour</strong>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% board.goals.each do |board_goal| %>
+      <tr>
+        <td>
+          <%= board_goal_label(board_goal) %>
+        </td>
+        <td>
+          <div class="row">
+            <div class="col-md-3">
+              <%= button_to(
+                '-',
+                board_goal_path(board_goal, board_goal: { priority: board_goal.priority.to_i - 1 }),
+                method: :patch,
+                class: 'btn btn-default'
+              ) %>
+            </div>
+            <div class="col-md-2 center">
+              <%= board_goal.priority %>
+            </div>
+            <div class="col-md-3">
+              <%= button_to(
+                '+',
+                board_goal_path(board_goal, board_goal: { priority: board_goal.priority.to_i + 1 }),
+                method: :patch,
+                class: 'btn btn-default'
+              ) %>
+            </div>
+          </div>
+        </td>
+        <td>
+          <% goal_colours.each do |colour, label_type| %>
+            <%= button_to(board_goal_path(board_goal, board_goal: { colour: colour }), method: :patch, class: 'unstyled-button') do %>
+             <span class="label label-<%= label_type %>"><%= colour %></span>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to(
+            board_goal_path(board_goal),
+            method: :delete,
+            data: { confirm: 'Are you sure?' }
+          ) do %>
+            <span class="glyphicon glyphicon-remove float-right"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

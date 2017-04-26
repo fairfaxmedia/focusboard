@@ -1,0 +1,39 @@
+<div class="col-md-6">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Users
+    </div>
+    <div class="panel-body scroll" style="max-height:30vh;">
+      <%= render 'shared/users_table', users: @users %>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Daily Reflections
+    </div>
+    <div class="panel-body scroll" style="max-height:10vh;">
+      <%= render 'shared/daily_notes_table', daily_notes: @daily_notes %>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Boards
+    </div>
+    <div class="panel-body scroll" style="max-height:30vh;">
+      <%= render 'shared/boards_table', boards: @boards %>
+    </div>
+    <div class="panel-footer center">
+      <%= link_to 'New Board', new_board_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Tasks
+    </div>
+    <div class="panel-body scroll" style="max-height:80vh;">
+      <%= render 'shared/tasks_table', tasks: @tasks %>
+    </div>
+  </div>
+</div>

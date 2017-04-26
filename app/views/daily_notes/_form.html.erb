@@ -1,0 +1,40 @@
+<%= form_for([user, daily_note]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <p>
+      <strong>User:</strong>
+      <%= daily_note.user.name %>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>
+      <strong>Entry for:</strong>
+      <%= local_time(daily_note.date, '%B %e, %Y') %>
+    </p>
+  </div>
+
+  <div class="field">
+    <%= f.label :positive_outcome, "How are you feeling about your day?" %><br>
+    <%= f.label :positive_outcome, value: true, class: 'radio-inline' do %>
+      <%= f.radio_button :positive_outcome, true, checked: true %>
+      <%= content_tag :span, nil, class: 'glyphicon glyphicon-thumbs-up green' %>
+    <% end %>
+    <%= f.label :positive_outcome, value: false, class: 'radio-inline' do %>
+      <%= f.radio_button :positive_outcome, false %>
+      <%= content_tag :span, nil, class: 'glyphicon glyphicon-thumbs-down red' %>
+    <% end %>
+    <br>
+    <br>
+  </div>
+  <div class="field">
+    <%= f.label :content, 'Is there anything you would like to reflect on?' %><br>
+    <%= f.text_area :content, class: 'form-control', readonly: readonly %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit 'Submit Reflection', class: "btn btn-primary" unless readonly %>
+  </div>
+<% end %>

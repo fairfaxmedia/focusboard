@@ -1,0 +1,9 @@
+one:
+  name: first board
+  jira_url: test.atlassian.com
+  owner: enableduser
+
+two:
+  name: second board
+  jira_url: test2.atlassian.com
+  owner: adminuser

@@ -1,0 +1,20 @@
+<%= status_button(
+  status: 'WFH',
+  glyphicon: 'home',
+  check_method: :working_from_home_today?
+) %>
+<%= status_button(
+  status: 'Sick',
+  glyphicon: 'bed',
+  check_method: :sick?
+) %>
+<%= status_button(
+  status: 'Oncall',
+  glyphicon: 'earphone',
+  check_method: :oncall_this_week?
+) %>
+<%= status_button(
+  status: 'Leave',
+  glyphicon: 'globe',
+  check_method: :on_leave?
+) %>

@@ -1,0 +1,15 @@
+<%= glyph_link_to(
+  board_daily_notes_path(board),
+  glyphicon: :user,
+  style: 'color: white; float: right; margin-right: 10px;',
+  title: 'Team Reflections',
+  span_data: { toggle: :tooltip, placement: :left }
+) %>
+
+<%= glyph_link_to(
+  edit_board_path(board),
+  glyphicon: :cog,
+  style: 'color: white; float: right; margin-right: 10px;',
+  title: 'Board Settings',
+  span_data: { toggle: :tooltip, placement: :left }
+) %>

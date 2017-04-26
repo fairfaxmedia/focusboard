@@ -1,0 +1,23 @@
+<%= form_for([board, board_membership]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="row">
+    <div class="col-md-10">
+      <%= f.label :user_id, 'Add User' %><br>
+      <%= f.collection_select(
+        :user_id,
+        board.non_members,
+        :id,
+        :name_and_email,
+        {},
+        class: 'form-control'
+      ) %>
+    </div>
+    <div class="actions col-md-2">
+      <br>
+      <%= f.submit '+', class: 'btn btn-primary glyphicon glyphicon-plus' %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :board_id, value: board.id %>
+<% end %>
